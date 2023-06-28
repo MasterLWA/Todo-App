@@ -1,6 +1,7 @@
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import Header from './Component/Header';
+import Todoitems from './Component/Todoitems';
 
 export default function App() {
 
@@ -10,12 +11,18 @@ export default function App() {
     {text: 'play on the switch', key: '3'},
   ]);
 
+  const pressHandler = (key) =>{
+    setTodos((prevTodos)=>{
+      return prevTodos.filter(todo => todo.key != key);
+    })
+  }
+
   return (
     <View style={styles.container}>
           
           {/* Header */}
           < Header />
-          
+
           <View style={styles.content}>
                 {/* to Form */}
                 <View style={styles.list}>
@@ -24,7 +31,7 @@ export default function App() {
                     <FlatList
                       data={todos}
                       renderItem={({item})=>(
-                        <Text>{item.text}</Text>
+                        <Todoitems item={item} pressHandler={pressHandler}/>
                       )}
                     />
 
