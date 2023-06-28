@@ -2,6 +2,7 @@ import { FlatList, StyleSheet, Text, View, TouchableOpacity } from 'react-native
 import React, { useState } from 'react';
 import Header from './Component/Header';
 import Todoitems from './Component/Todoitems';
+import Addtodo from './Component/Addtodo';
 
 export default function App() {
 
@@ -17,6 +18,15 @@ export default function App() {
     })
   }
 
+  const submitHandler = (text) =>{
+    setTodos((prevTodos)=>{
+      return [
+        {text: text, key: Math.random().toString()},
+        ...prevTodos
+      ];
+    })
+  }
+
   return (
     <View style={styles.container}>
           
@@ -24,6 +34,7 @@ export default function App() {
           < Header />
 
           <View style={styles.content}>
+              <Addtodo  submitHandler={submitHandler}/>
                 {/* to Form */}
                 <View style={styles.list}>
                
