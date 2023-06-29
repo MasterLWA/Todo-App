@@ -1,8 +1,9 @@
-import { FlatList, StyleSheet, View, Alert } from 'react-native';
+import { FlatList, StyleSheet, View, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import Header from './Component/Header';
 import Todoitems from './Component/Todoitems';
 import Addtodo from './Component/Addtodo';
+import Sandbox from './Component/Sandbox.js';
 
 export default function App() {
 
@@ -34,6 +35,11 @@ export default function App() {
     }}
 
   return (
+    // <Sandbox />
+    <TouchableWithoutFeedback onPress={()=>{
+      Keyboard.dismiss();
+      console.log('dismissed keyboard')
+    }}>
     <View style={styles.container}>
           
           {/* Header */}
@@ -57,6 +63,7 @@ export default function App() {
           </View>
 
     </View>
+    </TouchableWithoutFeedback>
   );
 }
 
